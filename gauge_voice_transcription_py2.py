@@ -67,7 +67,7 @@ def percent_matching(s1, s2):
     s1_words = ''.join([words_as_chars[w] for w in s1_split])
     s2_words = ''.join([words_as_chars[w] for w in s2_split])
     #
-    # Apply difflib.
+    # Instantiate a SequenceMatcher.
     gauge_word = difflib.SequenceMatcher(
             None, s1_words, s2_words, autojunk=False).ratio()
     #
@@ -87,7 +87,7 @@ def percent_matching(s1, s2):
     s1_norm = ''.join([norm_words_as_chars[w] for w in s1_norm])
     s2_norm = ''.join([norm_words_as_chars[w] for w in s2_norm])
     #
-    # Apply difflib
+    # Instantiate a SequenceMatcher.
     gauge_lemma = difflib.SequenceMatcher(
             None, s1_norm, s2_norm, autojunk=False).ratio()
     #
