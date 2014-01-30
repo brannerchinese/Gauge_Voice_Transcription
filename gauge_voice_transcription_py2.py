@@ -4,15 +4,15 @@
 
 """Return quantitative gauges of the accuracy of voice transcription."""
 
-import re
-import difflib
-import nltk
 import sys
-
 # Ensure Python version 2.6 or above, because of NTLK.
 if sys.version_info[0] != 2 or sys.version_info[1] < 6:
     print("This program requires Python 2, versions 2.6 or above.")
     sys.exit(1)
+import re
+import difflib
+import nltk
+
 
 def main(s1, s2, places=1):
     gauge_raw, gauge_word, gauge_lemma = percent_matching(s1, s2)
