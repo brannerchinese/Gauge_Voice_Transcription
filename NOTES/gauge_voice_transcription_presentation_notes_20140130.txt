@@ -1,0 +1,13 @@
+Normally we want to improve the quality of voice-recognition, for instance in the use of tools for the hearing-impaired, automated stenography, or giving verbal instructions to a robotic servant.
+
+Today I wonder to consider the reverse question: What means do I have to confound automatic voice recognition and transcription?
+
+Limit myself to procedures that are laborious neither to execute nor to understand, and limit myself to standard English.
+
+Must be usable on the fly, without preparation. No codes, ciphers, steganography, or heavy use of filler words (wink wink, nudge nudge). 
+
+Also no resorting foreign language or non-standard accents (in spite of their considerable utility).
+
+I used Google's automated transcription of voicemail for this project.
+
+Evaluation: Google provides its transcription along with a confidence value for each word, which can be combined into a single confidence value for the whole transcription. I wrote a piece of code to compare how much alike the transcription Google provides is to the original text.
