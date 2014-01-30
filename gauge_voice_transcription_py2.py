@@ -14,11 +14,13 @@ if sys.version_info[0] != 2 or sys.version_info[1] < 6:
     print("This program requires Python 2, versions 2.6 or above.")
     sys.exit(1)
 
-def main(s1, s2):
+def main(s1, s2, places=1):
     gauge_raw, gauge_word, gauge_lemma = percent_matching(s1, s2)
     print ('''By character:       {}\nBy word:            {}'''
             '''\nBy normalized word: {}'''.format(
-            round(gauge_raw, 1), round(gauge_word, 1), round(gauge_lemma, 1)))
+            round(gauge_raw, places), 
+            round(gauge_word, places), 
+            round(gauge_lemma, places)))
 
 # Treebank and WordNet POS need correspondences specified in order for the
 # NLTK lemmatizer to work correctly on the tagged output. Only the following
