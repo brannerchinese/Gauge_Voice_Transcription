@@ -1,3 +1,5 @@
+Interfering with Voice-Recognition Software
+
 Normally we want to improve the quality of voice-recognition, for instance in the use of tools for the hearing-impaired, automated stenography, or giving verbal instructions to a robotic servant.
 
 Today I wonder to consider the reverse question: What means do I have to confound automatic voice recognition and transcription?
@@ -12,6 +14,17 @@ I used Google's automated transcription of voicemail for this project.
 
 Evaluation: Google provides its transcription along with a confidence value for each word, which can be combined into a single confidence value for the whole transcription. I wrote a piece of code to compare how much alike the transcription Google provides is to the original text.
 
+Google supplies a transcription composed of well-formed English words, so there is question of typographical errors, for which edit distance would be a useful quantification tool. 
+
+Instead, given an original string `s1` and a transcription string `s2`, I look for the longest common substring of `s1` in `s2` with whatever 
+
+Developed by John W. Ratcliff and John A. Obershelp in 1983 for application to problems in educational software (Ratcliff and Metzener, 1988)
+
+http://www.drdobbs.com/database/pattern-matching-the-gestalt-approach/database/pattern-matching-the-gestalt-approach/184407970?pgno=5 (accessed 20140130). See also mention (without code) of two C implementations at http://www.drdobbs.com/letters/184408035 (accessed 20140130).
+
+For use with Praat:
+
+"zero tuba father max"
 
 *****
 
