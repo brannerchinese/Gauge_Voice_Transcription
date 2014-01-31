@@ -21,7 +21,7 @@ This project is in mid-process.
 Guide to the output:
 
    * **By character** compares the strings character by character, with punctuation stripped and case differences eliminated. Comparing the strings by character not a good principle when well-formed whole English words are expected to be in the second string, which is usually the case with voice transcription output.
-   * **By word** compares arrays of whole words.
+   * **By word** compares arrays of whole words, with punctuation stripped and case differences eliminated.
    * **By normalized word** is like "by word", but with additional normalization of nouns and verbs to their "lemma" (morphologically neutral dictionary-headword) forms, and with most contractions expanded (_can't_ => _cannot_, _won't_ => _will not_, etc.). 
 
 "By normalized word" is the most useful option if one wants to ignore minor differences in grammar:
@@ -54,7 +54,7 @@ There is a rudimentary test suite in `test`, intended for use with `pytest`. To 
 
 The algorithm used was described as ["the gestalt approach"](http://www.drdobbs.com/database/pattern-matching-the-gestalt-approach/database/pattern-matching-the-gestalt-approach/184407970?pgno=5) to pattern matching in the 1988 article introducing it, in an assembly-language implementation. Known as the Ratcliff/Obershelp pattern matching algorithm, it is implemented as `difflib.SequenceMatcher` in the Python standard library, with cubic worst-case time complexity.
 
-The original algorithm is designed for comparing two strings of characters. Here, since I am interested in comparing not fine-grained strings but arrays of well-formed standard English words (the usual output of voice-transcription software), I have introduced a hack to use `difflib.SequenceMatcher` to compare arrays, element by element.
+The original algorithm is designed for comparing two strings of characters. Here, since I am interested in comparing not fine-grained strings but arrays of well-formed standard English words (the usual output of voice-transcription software), I have introduced a hack to adapt `difflib.SequenceMatcher` to compare arrays, whole element by whole element.
  
 Discussion forthcoming.
 
