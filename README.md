@@ -4,4 +4,43 @@ Calculate various quantitative gauges of the accuracy of voice transcription.
 
 This project is in mid-process.
 
+---
+
+### To run
+
+ Note that this software is designed for use only with Python 2, at or above version 2.6. Running in other environments will fail by design, since the NLTK dependency requires Python 2.
+ 
+ The required arguments of the `main` function are the original string and a string containing its transcription. Output is a rounded-off value showing the percentage of the original string found intact, within some tolerance, in the transcription:
+
+    In [1]: import gauge_voice_transcription_py2 as G
+    In [2]: G.main('This is right.', 'this is almost right')
+    By character:       0.8
+    By word:            0.9
+    By normalized word: 0.9
+
+ "By character" compares the strings character by character, with punctuation stripped and case differences eliminated. Comparing the strings by character not a good principle when well-formed whole English words are expected to be in the second string, which is usually the case with voice transcription output.
+   
+ "By word" compares arrays of whole words.
+   
+ "By normalized word" is like "by word", but with additional normalization of nouns and verbs to their "lemma" (morphologically neutral dictionary-headword) forms, and with most contractions expanded (_can't_ => _cannot_, _won't_ => _will not_, etc.). This is the most useful option if one wants to ignore minor differences in grammar:
+
+    In [3]: G.main('This is right.', 'this be almost right')
+    By character:       0.7
+    By word:            0.6
+    By normalized word: 0.9
+
+ By default, results are rounded to a single decimal place. For other precision, use a third argument `places`:
+
+    In [4]: G.main('This is right.', 'this be almost right', places=2)
+    By character:       0.73
+    By word:            0.57
+    By normalized word: 0.86
+
+### Test suite
+
+ There is a rudimentary test suite in `test`, intended for use with `pytest`. To run:
+
+    $ pip install pytest
+    $ py.test test
+
 [end]
