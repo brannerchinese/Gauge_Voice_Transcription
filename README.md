@@ -2,8 +2,6 @@
 
 Calculate various quantitative gauges of the accuracy of voice transcription.
 
-This project is in mid-process.
-
 ---
 
 **Note** that this software is designed for use only with Python 2, at or above version 2.6. Running in other environments will fail by design, since the NLTK dependency requires Python 2.
@@ -64,5 +62,15 @@ The hack is as follows:
  1. convert each source array to a string of single characters, one word to one character, based on the contents of the dictionary.
 
 This hack allows `difflib.SequenceMatcher` to operate on arrays of indivisible elements.
+
+---
+
+This project is in mid-process.
+
+Still to do: 
+
+ 1. Convert phone calls to MP3.
+ 2. Decide about inclusion of tolerance information.
+ 1. Prepare slides for presentation.
 
 [end]
