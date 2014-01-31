@@ -20,9 +20,9 @@ The required arguments of the `main` function are the original string and a stri
 
 Guide to the output:
 
-   * **By character** compares the strings character by character, with punctuation stripped and case differences eliminated. Comparing the strings by character not a good principle when well-formed whole English words are expected to be in the second string, which is usually the case with voice transcription output.
-   * **By word** compares arrays of whole words, with punctuation stripped and case differences eliminated.
-   * **By normalized word** is like "by word", but with additional normalization of nouns and verbs to their "lemma" (morphologically neutral dictionary-headword) forms, and with most contractions expanded (_can't_ => _cannot_, _won't_ => _will not_, etc.). 
+   * **By character** compares the strings character by character, with punctuation stripped and upper- and lower-case differences eliminated. Comparing the strings by character not a good principle when well-formed whole English words are expected to be in the second string, which is usually the case with voice transcription output.
+   * **By word** compares arrays of whole words, with punctuation stripped and upper- and lower-case differences eliminated.
+   * **By normalized word** is just like "by word", but with additional normalization of most nouns and verbs to their "lemma" (morphologically neutral dictionary-headword) forms, and with most contractions expanded (_can't_ => _cannot_, _won't_ => _will not_, etc.). 
 
 "By normalized word" is the most useful option if one wants to ignore minor differences in grammar:
 
