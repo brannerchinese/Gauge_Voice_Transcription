@@ -50,7 +50,7 @@ There is a rudimentary test suite in `test`, intended for use with `pytest`. To 
 
 ### Algorithm
 
-The algorithm used was described as ["the gestalt approach"](http://www.drdobbs.com/database/pattern-matching-the-gestalt-approach/database/pattern-matching-the-gestalt-approach/184407970?pgno=5) to pattern matching in the 1988 article introducing it, in an assembly-language implementation. Dating to 1983, it was intended for use in educational software, for automating the checking of student responses on exams. Known as the Ratcliff/Obershelp pattern matching algorithm, it is implemented as `difflib.SequenceMatcher` in the Python standard library, with cubic worst-case time complexity.
+The algorithm used was described as ["the gestalt approach"](http://www.drdobbs.com/database/pattern-matching-the-gestalt-approach/database/pattern-matching-the-gestalt-approach/184407970?pgno=5) to pattern matching in the 1988 article introducing it, in an assembly-language implementation. Dating to 1983, it was intended for use in educational software, for automating the checking of student responses on exams; it was also used in early spell-checkers. Known as the Ratcliff/Obershelp pattern matching algorithm, it is implemented as `difflib.SequenceMatcher` in the Python standard library, with cubic worst-case time complexity.
 
 The original algorithm is designed for comparing two strings of characters. Here, I am interested in comparison not of strings but of arrays, and want to measure not single-character differences but the matching of whole, well-formed words in standard English (the usual output of voice-transcription software). So I have introduced a hack to adapt `difflib.SequenceMatcher` to compare arrays, whole element by whole element.
  
