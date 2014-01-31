@@ -6,11 +6,11 @@ This project is in mid-process.
 
 ---
 
+**Note** that this software is designed for use only with Python 2, at or above version 2.6. Running in other environments will fail by design, since the NLTK dependency requires Python 2.
+
 ### To run
 
- Note that this software is designed for use only with Python 2, at or above version 2.6. Running in other environments will fail by design, since the NLTK dependency requires Python 2.
- 
- The required arguments of the `main` function are the original string and a string containing its transcription. Output is a rounded-off value showing the percentage of the original string found intact, within some tolerance, in the transcription:
+The required arguments of the `main` function are the original string and a string containing its transcription. Output is a rounded-off value showing the percentage of the original string found intact, within some tolerance, in the transcription:
 
     In [1]: import gauge_voice_transcription_py2 as G
     In [2]: G.main('This is right.', 'this is almost right')
