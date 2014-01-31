@@ -25,6 +25,7 @@ def main(orig, transcr, places=1):
             round(gauge_word, places), 
             round(gauge_lemma, places)))
 
+# Global variables.
 # Treebank and WordNet POS need correspondences specified in order for the
 # NLTK lemmatizer to work correctly on the tagged output. Only the following
 # five have application, however.
