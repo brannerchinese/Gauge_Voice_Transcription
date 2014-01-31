@@ -1,4 +1,4 @@
-# disrupt_voice_transcription_py2.py
+# gauge_voice_transcription_py2.py
 # 20140130, working.
 # David Prager Branner
 
@@ -14,8 +14,8 @@ import difflib
 import nltk
 
 
-def main(s1, s2, places=1):
-    gauge_raw, gauge_word, gauge_lemma = percent_matching(s1, s2)
+def main(orig, transcr, places=1):
+    gauge_raw, gauge_word, gauge_lemma = percent_matching(orig, transcr)
     print ('''By character:       {}\nBy word:            {}'''
             '''\nBy normalized word: {}'''.format(
             round(gauge_raw, places), 
@@ -34,28 +34,50 @@ TB2WN = {
     }
 WNL = nltk.stem.WordNetLemmatizer()
 
-def percent_matching(s1, s2):
+def percent_matching(orig, transcr):
     """Compare the likeness of two input strings."""
     #
     # Case 1. Simple case: strings are compared character by character.
     #
     # Strip punctuation and lower-case all words
-    s1_cleaned = re.sub(r'[^\w\s]', '', s1.lower())
-    s2_cleaned = re.sub(r'[^\w\s]', '', s2.lower())
+    orig_cleaned = re.sub(r'[^\w\s]', '', orig.lower())
+    transcr_cleaned = re.sub(r'[^\w\s]', '', transcr.lower())
     #
     # Apply difflib to the two resulting strings in each case.
     #     Note: uses Ratcliff/Obershelp pattern recognition
     #     (see http://www.nist.gov/dads/html/ratcliffobershelp.html).
     gauge_raw = difflib.SequenceMatcher(
-            None, s1_cleaned, s2_cleaned, autojunk=False).ratio()
+            None, orig_cleaned, transcr_cleaned, autojunk=False).ratio()
     #
     # Case 2. Case of whole words rather than characters.
     #
+    orig_words = orig_cleaned.split()
+    transcr_words = transcr_cleaned.split()
+    orig_words, transcr_words = arrays_to_dense_strings(
+            orig_words, transcr_words)
+    #
+    # Instantiate a SequenceMatcher.
+    gauge_word = difflib.SequenceMatcher(
+            None, orig_words, transcr_words, autojunk=False).ratio()
+    #
+    # Case 3. Case of normalized whole words.
+    #
+    # Normalize each word via NLTK and create additional pair of strings.
+    orig_norm = clean_and_normalize(orig)
+    transcr_norm = clean_and_normalize(transcr)
+    orig_norm, transcr_norm = arrays_to_dense_strings(orig_norm, transcr_norm)
+    #
+    # Instantiate a SequenceMatcher.
+    gauge_lemma = difflib.SequenceMatcher(
+            None, orig_norm, transcr_norm, autojunk=False).ratio()
+    #
+    return (gauge_raw, gauge_word, gauge_lemma)
+
+def arrays_to_dense_strings(orig, transcr):
+    """Reduce lists of words to dense strings, one element => one character."""
     # Get set of all unique words.
-    s1_split = s1_cleaned.split()
-    s2_split = s2_cleaned.split()
-    all_unique = set(s1_split)
-    all_unique.update(set(s2_split))
+    all_unique = set(orig)
+    all_unique.update(set(transcr))
     #
     # Place all unique words in dict {word : item + 32}.
     #     Note that 32 is first printable character, for ease displaying most
@@ -64,34 +86,9 @@ def percent_matching(s1, s2):
     #
     # Convert each list to a string using the value corresponding to each 
     # list-element.
-    s1_words = ''.join([words_as_chars[w] for w in s1_split])
-    s2_words = ''.join([words_as_chars[w] for w in s2_split])
-    #
-    # Instantiate a SequenceMatcher.
-    gauge_word = difflib.SequenceMatcher(
-            None, s1_words, s2_words, autojunk=False).ratio()
-    #
-    # Case 3. Case of normalized whole words.
-    #
-    # Normalize each word via NLTK and create additional pair of strings.
-    s1_norm = clean_and_normalize(s1)
-    s2_norm = clean_and_normalize(s2)
-    #
-    # Get set of all unique words.
-    all_unique_lemm = set(s1_norm)
-    all_unique_lemm.update(set(s2_norm))
-    #
-    # Convert contents of all_unique_norm to strings.
-    norm_words_as_chars = {lemma:unichr(i + 32) for i, lemma in
-            enumerate(all_unique_lemm)}
-    s1_norm = ''.join([norm_words_as_chars[w] for w in s1_norm])
-    s2_norm = ''.join([norm_words_as_chars[w] for w in s2_norm])
-    #
-    # Instantiate a SequenceMatcher.
-    gauge_lemma = difflib.SequenceMatcher(
-            None, s1_norm, s2_norm, autojunk=False).ratio()
-    #
-    return gauge_raw, gauge_word, gauge_lemma
+    orig_words = ''.join([words_as_chars[w] for w in orig])
+    transcr_words = ''.join([words_as_chars[w] for w in transcr])
+    return (orig_words, transcr_words)
 
 def clean_and_normalize(the_str):
     """Return all-downcase, unpunctuated, lemmatized list of words in string."""
