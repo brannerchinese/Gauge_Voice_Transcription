@@ -47,9 +47,7 @@ def percent_matching(orig, transcr):
     orig_cleaned = re.sub(r'[^\w\s]', '', orig.lower())
     transcr_cleaned = re.sub(r'[^\w\s]', '', transcr.lower())
     #
-    # Apply difflib to the two resulting strings in each case.
-    #     Note: uses Ratcliff/Obershelp pattern recognition
-    #     (see http://www.nist.gov/dads/html/ratcliffobershelp.html).
+    # Instantiate a SequenceMatcher and compute the ratio of common content.
     gauge_raw = difflib.SequenceMatcher(
             None, orig_cleaned, transcr_cleaned, autojunk=False).ratio()
     #
@@ -58,7 +56,7 @@ def percent_matching(orig, transcr):
     orig_words = orig_cleaned.split()
     transcr_words = transcr_cleaned.split()
     #
-    # Instantiate a SequenceMatcher.
+    # Instantiate a SequenceMatcher and compute the ratio of common content.
     gauge_word = difflib.SequenceMatcher(
             None, orig_words, transcr_words, autojunk=False).ratio()
     #
@@ -68,7 +66,7 @@ def percent_matching(orig, transcr):
     orig_norm = clean_and_normalize(orig)
     transcr_norm = clean_and_normalize(transcr)
     #
-    # Instantiate a SequenceMatcher.
+    # Instantiate a SequenceMatcher and compute the ratio of common content.
     gauge_lemma = difflib.SequenceMatcher(
             None, orig_norm, transcr_norm, autojunk=False).ratio()
     #
