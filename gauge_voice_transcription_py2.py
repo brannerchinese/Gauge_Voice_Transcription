@@ -1,5 +1,5 @@
 # gauge_voice_transcription_py2.py
-# 20140130, working.
+# 20140131, working.
 # David Prager Branner
 
 """Return quantitative gauges of the accuracy of voice transcription."""
@@ -57,8 +57,6 @@ def percent_matching(orig, transcr):
     #
     orig_words = orig_cleaned.split()
     transcr_words = transcr_cleaned.split()
-    orig_words, transcr_words = arrays_to_dense_strings(
-            orig_words, transcr_words)
     #
     # Instantiate a SequenceMatcher.
     gauge_word = difflib.SequenceMatcher(
@@ -69,30 +67,12 @@ def percent_matching(orig, transcr):
     # Normalize each word via NLTK and create additional pair of strings.
     orig_norm = clean_and_normalize(orig)
     transcr_norm = clean_and_normalize(transcr)
-    orig_norm, transcr_norm = arrays_to_dense_strings(orig_norm, transcr_norm)
     #
     # Instantiate a SequenceMatcher.
     gauge_lemma = difflib.SequenceMatcher(
             None, orig_norm, transcr_norm, autojunk=False).ratio()
     #
     return (gauge_raw, gauge_word, gauge_lemma)
-
-def arrays_to_dense_strings(orig, transcr):
-    """Reduce lists of words to dense strings, one element => one character."""
-    # Get set of all unique words.
-    all_unique = set(orig)
-    all_unique.update(set(transcr))
-    #
-    # Place all unique words in dict {word : item + 32}.
-    #     Note that 32 is first printable character, for ease displaying most
-    #     (not necessarily all) of resulting string.
-    words_as_chars = {word:unichr(i + 32) for i, word in enumerate(all_unique)}
-    #
-    # Convert each list to a string using the value corresponding to each 
-    # list-element.
-    orig_words = ''.join([words_as_chars[w] for w in orig])
-    transcr_words = ''.join([words_as_chars[w] for w in transcr])
-    return (orig_words, transcr_words)
 
 def clean_and_normalize(the_str):
     """Return all-downcase, unpunctuated, lemmatized list of words in string."""
