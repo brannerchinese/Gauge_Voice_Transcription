@@ -15,6 +15,9 @@ import nltk
 
 
 def main(orig, transcr, places=1):
+    if not (orig or transcr):
+        print 'Cannot run with empty input strings. Exiting.'
+        sys.exit(1)
     gauge_raw, gauge_word, gauge_lemma = percent_matching(orig, transcr)
     print ('''By character:       {}\nBy word:            {}'''
             '''\nBy normalized word: {}'''.format(
@@ -118,3 +121,5 @@ def clean_and_normalize(the_str):
             if item[1][0] in TB2WN else item[0] for item in tagged]
     return lemmata
 
+if __name__ == '__main__':
+    main('', '')
