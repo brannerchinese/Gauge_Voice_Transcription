@@ -11,10 +11,10 @@
 The required arguments of the `main` function are the original string and a string containing its transcription. Output is a rounded-off value showing the percentage of the original string found intact, within some tolerance, in the transcription:
 
     In [1]: import gauge_voice_transcription_py2 as G
-    In [2]: G.main('This is right.', 'this is almost right')
+    In [2]: G.main('I would like a banana, too.', 'i would likes, the bananas chew')
     By character:       0.8
-    By word:            0.9
-    By normalized word: 0.9
+    By word:            0.3
+    By normalized word: 0.7
 
 Guide to the output:
 
@@ -22,24 +22,19 @@ Guide to the output:
    * **By word** compares arrays of whole words, with punctuation stripped and upper- and lower-case differences eliminated.
    * **By normalized word** is just like "by word", but with additional normalization of most nouns and verbs to their "lemma" (morphologically neutral dictionary-headword) forms, and with most contractions expanded (_can't_ => _cannot_, _won't_ => _will not_, etc.). 
 
-"By normalized word" is the most useful option if one wants to ignore minor differences in grammar:
-
-    In [3]: G.main('This is right.', 'this be almost right')
-    By character:       0.7
-    By word:            0.6
-    By normalized word: 0.9
+"By normalized word" is the most useful option if one wants to ignore minor differences in morphology, such as _likes_ for _like_ and _bananas_ for _banana_.
 
 By default, results are rounded to a single decimal place. For other precision, use a third argument `places`:
 
-    In [4]: G.main('This is right.', 'this be almost right', places=2)
-    By character:       0.73
-    By word:            0.57
-    By normalized word: 0.86
+    In [4]: G.main('I would like a banana, too.', 'i would likes, the bananas chew', places=2)
+    By character:       0.76
+    By word:            0.33
+    By normalized word: 0.67
 
 The unrounded results are returned by the `percent_matching` function:
 
-    In [5]: G.percent_matching('This is right.', 'this be almost right')
-    Out[6]: (0.7272727272727273, 0.5714285714285714, 0.8571428571428571)
+    In [5]: G.percent_matching('I would like a banana, too.', 'i would likes, the bananas chew')
+    Out[6]: (0.7636363636363637, 0.3333333333333333, 0.6666666666666666)
 
 ### Testing
 
