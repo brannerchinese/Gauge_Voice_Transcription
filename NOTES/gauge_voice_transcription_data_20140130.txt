@@ -119,6 +119,42 @@ By normalized word: 0.7
 
 
 
+Speaking in the background (1010 WINS)
+
+https://www.google.com/voice/b/0#message/XGKIGWPOXYJKOSVZTJROOZULQIXJXUWNNYQLZVQH/
+
+s2 = "The decline we're a few of my concerns that conference by emerging markets. Central banks, tighten monetary policy. I won't be enough to protective economy. Thank you, investor money and also higher rates, as opposed to entice investors to continue investing in emerging markets parents and sister okay. I love that he told higher interest rates me any of the economic growth of insulation, pavey too hot. Bye bye."
+
+By character:       0.8
+By word:            0.5
+By normalized word: 0.5
+
+
+Skype
+
+s1 = "Hello! Welcome to Skype call-testing service. After the beep, please record a message. Afterwards, your message will be played back to you."
+
+U.K. version:
+
+https://www.google.com/voice/b/0#message/QPHPKNYQLPXLQTXXQQRJMQTIMMNQHXLVKKQKHJZZ/
+
+s2 = "HI Welcome, just got court. I think that that after the Beep. If you can call the message. To with your message will be played back to you."
+
+By character:       0.7
+By word:            0.5
+By normalized word: 0.5
+
+
+DPB's version:
+
+https://www.google.com/voice/b/0#message/PQQKKVPWSVOVIQZNMQHJKSHSIXOPRGKPJRSQPGWU/
+
+s2 = "Hello, Welcome to Skype Call Testing Service, after the Beep. Please record a message, afterwards. Your message will be played back to you."
+
+By character:       1.0
+By word:            0.9
+By normalized word: 0.9
+
 ******
 
 Tried with a line of Spanish from CNN's Spanish site. Read by Google Translate.

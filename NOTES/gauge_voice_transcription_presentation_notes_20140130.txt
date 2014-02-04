@@ -16,11 +16,25 @@ Evaluation: Google provides its transcription along with a confidence value for 
 
 Google supplies a transcription composed of well-formed English words, so there is question of typographical errors, for which edit distance would be a useful quantification tool. 
 
-Instead, given an original string `s1` and a transcription string `s2`, I look for the longest common substring of `s1` in `s2` with whatever other matching material is found on either side of it interspersed with non-matching material.
+Instead, given an original string `s1` and a transcription string `s2`, I look for the longest common substring of `s1` in `s2` together with whatever other matching material is found on either side of it interspersed with non-matching material. 
 
 Developed by John W. Ratcliff and John A. Obershelp in 1983 for application to problems in educational software (Ratcliff and Metzener, 1988)
 
 http://www.drdobbs.com/database/pattern-matching-the-gestalt-approach/database/pattern-matching-the-gestalt-approach/184407970?pgno=5 (accessed 20140130). See also mention (without code) of two C implementations at http://www.drdobbs.com/letters/184408035 (accessed 20140130).
+
+
+
+*****
+
+Since high-level accuracy is more important than low level, we normalize both strings as follows:
+
+ 1. convert to lower-case
+ 2. replace each with its "lemma" form — the main form, regardless of morphological differences, that would appear as the headword in a dictionary
+
+   * example: _Give_, _gives_, _given_, _gave_, and _giving_ are all forms of _give_, but _give_ is the main lemma form. If the original text contained _give_ and it was transcribed as _gives_, we would understand what was means. In other words, we do not want to treat that as a substantial difference, so we give the transcriber benefit of doubt by normalizing 
+
+
+*****
 
 For use with Praat:
 
