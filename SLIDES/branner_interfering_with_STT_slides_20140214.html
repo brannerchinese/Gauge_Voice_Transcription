@@ -65,7 +65,7 @@
           <ul class="incremental">
             <li>Find the largest number of words in the original that occur in the correct order in the transcription. Ratcliff/Obershelp algorithm in Python <code>difflib</code>; input: lists of words.)</li>
             <li>Google returns both a whole string of text and a word-by-word list, showing the confidence with which each word is transcribed:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>gc-word-high</code> vs.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>gc-word-med2</code> vs.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>gc-word-med1</code><br><br>Here I ignore these confidence values and only treat the whole string. This lowers accuracy somewhat.</li>
-            <li>I consider only whole words, normalized (with NLTK and other tools) to ignore small morphological variations (so &ldquo;saves&rdquo;, &ldquo;saved&rdquo;, &ldquo;saving&rdquo; &#x2192; &ldquo;save&rdquo;). This raises accuracy somewhat.</li>
+            <li>I consider only whole words, normalized (with NLTK and other tools) to ignore small morphological variations (so &ldquo;saves&rdquo;, &ldquo;saved&rdquo;, &ldquo;saving&rdquo; &#x2192; &ldquo;save&rdquo;). Numerals zero to ten (ordinal and cardinal) are also converted to words. All this raises accuracy somewhat.</li>
           </ul>
         </div>
       </div>

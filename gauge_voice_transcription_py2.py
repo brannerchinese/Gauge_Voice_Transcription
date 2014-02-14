@@ -39,7 +39,7 @@ TB2WN = {
 WNL = nltk.stem.WordNetLemmatizer()
 # Replace numerals with equivalent words.
 # Attested: 3rd; 25 for 'too high', must mean 'two five'.
-# Unknown whether we have '11', '12th'.
+# Unknown whether we will actually encounter 11, 12th, 0th.
 digit2word = { '0': 'zero',
         '1': 'one',
         '2': 'two',
@@ -51,6 +51,7 @@ digit2word = { '0': 'zero',
         '8': 'eight',
         '9': 'nine',
         '10': 'ten',
+        '0th': 'zeroth',
         '1st': 'first',
         '2nd': 'second',
         '3rd': 'third',
