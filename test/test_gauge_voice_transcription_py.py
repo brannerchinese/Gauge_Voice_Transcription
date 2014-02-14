@@ -41,3 +41,12 @@ def test_long03():
     s2 = u"""The '''Great Dinky Robbery''' was a prank perpetrated by four [[Princeton University]] students on Friday, May 3, 1963.<ref>{{cite news |first=J. D. |last=Reed |title=The Little Engine That Can |url=http://query.nytimes.com/gst/fullpage.html?res=9900E1D9103BF932A05750C0A9649C8B63&sec=&spon=&pagewanted=4 |work=New York Times |date=March 31, 2002 |accessdate=2007-12-12 }}</ref> At the time, Princeton was an all-male school and the Dinky was the primary means of transportation for women coming to the campus to meet their dates. In the "Robbery", four students on horseback [[ambush]]ed the train as it was arriving in the [[Princeton Junction (NJT station)|Princeton Junction station]]. A convertible was parked across the track forcing the Dinky to come to an abrupt halt. At that point, the ersatz cowboys rode up to the Dinky, and, led by George Bunn '63 who was armed with a pistol loaded with blanks, boarded and seized four girls selected on the spot. The riders and their newly found dates rode off on the horses, the convertible was moved off the tracks, and the Dinky arrived safely, albeit a few minutes late. Although the University administrators were aware of the event and knew who was involved, they took no official action against them."""
     assert G.percent_matching(s1, s2) == (
             0.5297787861599547, 0.45925925925925926, 0.45925925925925926)
+
+def test_numerals01():
+    assert G.percent_matching(
+            'one two three', '1 2 3') == (0.2222222222222222, 0.0, 1.0)
+
+def test_numerals02():
+    assert G.percent_matching(
+            'one two third, tenth', '1 2 3rd 10th') == (
+                    0.45161290322580644, 0.0, 1.0)

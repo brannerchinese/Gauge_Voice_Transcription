@@ -1,5 +1,5 @@
 # gauge_voice_transcription_py2.py
-# 20140131, working.
+# 20140214, working.
 # David Prager Branner
 
 """Return quantitative gauges of the accuracy of voice transcription."""
@@ -37,6 +37,32 @@ TB2WN = {
     'S': nltk.wordnet.wordnet.ADJ_SAT
     }
 WNL = nltk.stem.WordNetLemmatizer()
+# Replace numerals with equivalent words.
+# Attested: 3rd; 25 for 'too high', must mean 'two five'.
+# Unknown whether we have '11', '12th'.
+digit2word = { '0': 'zero',
+        '1': 'one',
+        '2': 'two',
+        '3': 'three',
+        '4': 'four',
+        '5': 'five',
+        '6': 'six',
+        '7': 'seven',
+        '8': 'eight',
+        '9': 'nine',
+        '10': 'ten',
+        '1st': 'first',
+        '2nd': 'second',
+        '3rd': 'third',
+        '4th': 'fourth',
+        '5th': 'fifth',
+        '6th': 'sixth',
+        '7th': 'seventh',
+        '8th': 'eighth',
+        '9th': 'ninth',
+        '10th': 'tenth',
+        }
+
 
 def percent_matching(orig, transcr):
     """Compare the likeness of two input strings."""
@@ -98,6 +124,9 @@ def clean_and_normalize(the_str):
     tagged = nltk.pos_tag(tokenized)
     lemmata = [WNL.lemmatize(item[0], TB2WN[item[1][0]])
             if item[1][0] in TB2WN else item[0] for item in tagged]
+    for i, word in enumerate(lemmata):
+        if word in digit2word:
+            lemmata[i] = digit2word[word]
     return lemmata
 
 if __name__ == '__main__':
