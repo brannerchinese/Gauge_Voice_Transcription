@@ -383,9 +383,10 @@ function createControls() {
 	}
 	controlsDiv.innerHTML = '<form action="#" id="controlForm"' + hideDiv + '>' +
 	'<div id="navLinks">' +
-	'<a accesskey="t" id="toggle" href="javascript:toggle();">&#216;<\/a>' +
-	'<a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;<\/a>' +
-	'<a accesskey="x" id="next" href="javascript:go(1);">&raquo;<\/a>' +
+	// Commented out keyboard-based navigation links.
+//	'<a accesskey="t" id="toggle" href="javascript:toggle();">&#216;<\/a>' +
+//	'<a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;<\/a>' +
+//	'<a accesskey="x" id="next" href="javascript:go(1);">&raquo;<\/a>' +
 	'<div id="navList"' + hideList + '><select id="jumplist" onchange="go(\'j\');"><\/select><\/div>' +
 	'<\/div><\/form>';
 	if (controlVis == 'hidden') {
