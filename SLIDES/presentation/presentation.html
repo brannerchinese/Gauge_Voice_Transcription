@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>Interfering with Speech-to-Text</title>
+    <!-- metadata -->
+    <meta name="generator" content="S5" />
+    <meta name="version" content="S5 1.1" />
+    <meta name="presdate" content="20050728" />
+    <meta name="author" content="Eric A. Meyer" />
+    <meta name="company" content="Complex Spiral Consulting" /> 
+    <!-- configuration parameters --> 
+    <meta name="defaultView" content="slideshow" /> 
+    <meta name="controlVis" content="visible" /> 
+    <!-- style sheet links --> 
+    <link rel="stylesheet" href="ui/default/slides.css" type="text/css" media="projection" id="slideProj" /> 
+    <link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" /> 
+    <link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint" /> 
+    <link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix" /> 
+    <!-- S5 JS --> 
+    <script src="ui/default/slides.js" type="text/javascript"> </script> 
+  </head> 
+  
+  <body>
+
+    <div class="layout">
+      <div id="controls"><!-- DO NOT EDIT --></div>
+      <div id="currentSlide"><!-- DO NOT EDIT --></div>
+      <div id="header"></div>
+      <div id="footer">
+        <h1>Branner, "Interfering with Speech-to-Text"</h1> 
+        <h2>Hack and Tell, 4 February, 2014</h2>
+      </div> 
+    </div>
+
+    <div class="presentation">
+
+      <div class="slide">
+        <h1>Interfering with Speech-to-Text</h1>
+        <h2>(report on a preliminary experiment)</h2>
+        <h3>David Prager Branner</h3>
+        <h4>Hack and Tell, New York<br>4 February, 2014</h4>
+      </div>
+
+      <div class="slide">
+        <h1>Goal</h1>
+        <ul class="incremental">
+          <li><strong>Goal</strong>: To measure the effectiveness of different ways to interfere with automated voice transcription.</li>
+          <li><strong>Remarks</strong>: Normally we want to improve the quality of voice-recognition, for instance in the use of tools for the hearing-impaired, automated stenography, or giving verbal instructions to a robotic servant.</li>
+          <li>Today I want to consider the reverse question: What means do I have to confound automatic voice recognition and transcription?</li>
+          <li>I used Google's automated transcription of voicemail for this project, because of its convenience.</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Measurement tool</h1>
+        <ul class="incremental">
+          <li>Find the largest number of words in the original that occur in the correct order in the transcription. (Ratcliff/Obershelp algorithm in Python <em>difflib</em>; input: lists of words.)</li>
+          <li>Google returns both a whole string of text and a word-by-word list, showing the confidence with which each word is transcribed:<br>&nbsp;&nbsp;&nbsp;&nbsp;<em><h4>gc-word-high</em> vs. <em>gc-word-med2</em> vs. <em>gc-word-med1</h4></em><br>Ignore the confidence values; treat the whole string. This lowers accuracy somewhat.</li>
+          <li>Consider only whole words, <em>normalized</em> to ignore small morphological variations (so "saves", "saved", "saving" &#x2192; "save"). This raises accuracy somewhat.</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Strictures</h1>
+        <ul class="incremental">
+          <li>Limit myself to procedures that are laborious neither to execute nor to understand, and limit myself to standard English.</li>
+          <li>Must be usable on the fly, without preparation. No codes, ciphers, steganography, or heavy use of filler words ("wink wink", "nudge nudge").</li>
+          <li>Also no resorting foreign language or non-standard accents (in spite of their considerable utility).</li>
+          <li>Reported values are the average of five trials per type of interference.</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Summary of results</h1>
+        <table align="center" border="1" style="font-size:25px;">
+          <tr><td align="center"><em>type of interference</em></td><td align="center"><em>average<br>accuracy</em></td><td align="center"><em>ease to<br>produce</em></td><td align="center"><em>ease to<br>understand</em></td></tr>
+          <tr><td>Natural voice (no interference) </td><td>0.8</td><td>high</td><td>high</td></tr>
+          <tr><td align="center"><em>acoustic interference</em></td><td></td><td></td><td></td></tr>
+          <tr><td>Vigorous tapping </td><td>0.4</td><td>high</td><td>medium</td></tr>
+          <tr><td>Flapping paper </td><td>0.5</td><td>high</td><td>high</td></tr>
+          <tr><td>News report (1010 WINS) </td><td>0.5</td><td>high</td><td>high</td></tr>
+          <tr><td>Music (John Coltrane, Blue Trane, 1957) </td><td>0.6</td><td>high</td><td>high</td></tr>
+          <tr><td>White Noise (from SimplyNoise.com) </td><td>0.8</td><td>high</td><td>high</td></tr>
+        <tr><td align="center"><em>funny voices</em></td><td></td><td></td><td></td></tr>
+          <tr><td>Whispering </td><td>0.5</td><td>high</td><td>medium</td></tr>
+          <tr><td>Heavy Breathing </td><td>0.6</td><td>low</td><td>low</td></tr>
+          <tr><td>Falsetto </td><td>0.4</td><td>low</td><td>low</td></tr>
+          <tr><td align="center"><em>composite</em></td><td></td><td></td><td></td></tr>
+          <tr><td>Whispering while waving paper </td><td>0.1</td><td>medium</td><td>low</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+  </body>
+</html>
