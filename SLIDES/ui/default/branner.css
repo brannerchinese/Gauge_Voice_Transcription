@@ -3,7 +3,7 @@ table {
   margin-left:auto;
   margin-right:auto;
   vertical-align:middle;
-  font-size:25px;
+  font-size:17pt;
   text-align:center;
 }
 
@@ -12,8 +12,8 @@ table {
 }
 
 td {
-  border: 1px solid black;
-  padding:4px;
+  border: .01em solid black;
+  padding:.2em;
 }
 
 .leftcol {
@@ -24,8 +24,8 @@ td {
   color:#0055ff;
   font-weight:bold;
   font-style:italic;
-  padding:6px;
-  border:0px;
+  padding:.3em;
+  border:0em;
 }
 
 a:link, a:visited, a:hover, a:active {
@@ -40,10 +40,16 @@ blockquote {
 
 .transcriptiontext {
   text-align:left;
-  font-size:30px;
-  padding:6px;
+  font-size:18pt;
+  padding:.3em
 }
 
 .transcriptiontext td {
   width:50%;
 }
+
+.slide div {
+  width:30em;
+  vertical-align:middle;
+}
+

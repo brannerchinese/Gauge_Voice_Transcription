@@ -25,7 +25,7 @@
     <!-- DPB's own style sheet links -->
     <link rel="stylesheet" href="ui/default/branner.css" type="text/css" />
   </head> 
-  
+
   <body>
 
     <div class="layout">
@@ -49,181 +49,246 @@
 
       <div class="slide">
         <h1>Goal</h1>
-        <ul class="incremental">
-          <li><strong>Goal</strong>: To measure the effectiveness of different ways to interfere with automated voice transcription.</li>
-          <li><strong>Remarks</strong>: Normally we want to improve the quality of voice-recognition, for instance in the use of tools for the hearing-impaired, automated stenography, or giving verbal instructions to a robotic servant.</li>
-          <li>Today I want to consider the reverse question: What means do I have to confound automatic voice recognition and transcription?</li>
-          <li>I used Google's automated transcription of voicemail for this project, because of its convenience.</li>
-        </ul>
+        <div>
+          <ul class="incremental">
+            <li><strong>Goal</strong>: To measure the effectiveness of different ways to interfere with automated voice transcription.</li>
+            <li><strong>Remarks</strong>: Normally we want to improve the quality of voice-recognition, for instance in the use of tools for the hearing-impaired, automated stenography, or giving verbal instructions to a robotic servant.</li>
+            <li>Today I want to consider the reverse question: What means do I have to confound automatic voice recognition and transcription?</li>
+            <li>I used Google's automated transcription of voicemail for this project, because of its convenience.</li>
+          </ul>
+        </div>
       </div>
 
       <div class="slide">
         <h1>Measurement tool</h1>
-        <ul class="incremental">
-          <li>Find the largest number of words in the original that occur in the correct order in the transcription. (Ratcliff/Obershelp algorithm in Python <em>difflib</em>; input: lists of words.)</li>
-          <li>Google returns both a whole string of text and a word-by-word list, showing the confidence with which each word is transcribed:<br>&nbsp;&nbsp;&nbsp;&nbsp;<em><h4>gc-word-high</em> vs. <em>gc-word-med2</em> vs. <em>gc-word-med1</h4></em><br>Ignore the confidence values; treat the whole string. This lowers accuracy somewhat.</li>
-          <li>Consider only whole words, <em>normalized</em> to ignore small morphological variations (so &ldquo;saves&rdquo;, &ldquo;saved&rdquo;, &ldquo;saving&rdquo; &#x2192; &ldquo;save&rdquo;). This raises accuracy somewhat.</li>
-        </ul>
+        <div>
+          <ul class="incremental">
+            <li>Find the largest number of words in the original that occur in the correct order in the transcription. Ratcliff/Obershelp algorithm in Python <code>difflib</code>; input: lists of words.)</li>
+            <li>Google returns both a whole string of text and a word-by-word list, showing the confidence with which each word is transcribed:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>gc-word-high</code> vs.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>gc-word-med2</code> vs.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>gc-word-med1</code><br><br>Here I ignore these confidence values and only treat the whole string. This lowers accuracy somewhat.</li>
+            <li>I consider only whole words, normalized (with NLTK and other tools) to ignore small morphological variations (so &ldquo;saves&rdquo;, &ldquo;saved&rdquo;, &ldquo;saving&rdquo; &#x2192; &ldquo;save&rdquo;). This raises accuracy somewhat.</li>
+          </ul>
+        </div>
       </div>
 
       <div class="slide">
         <h1>Strictures</h1>
-        <ul class="incremental">
-          <li>Limit myself to procedures that are laborious neither to execute nor to understand, and limit myself to standard English.</li>
-          <li>Must be usable on the fly, without preparation. No codes, ciphers, steganography, or heavy use of filler words (<em>e.g.</em>, &ldquo;wink wink&rdquo;, &ldquo;nudge nudge&rdquo;).</li>
-          <li>Also no resorting foreign language or non-standard accents (in spite of their considerable utility).</li>
-          <li>Reported values are the average of five trials per type of interference.</li>
-        </ul>
+        <div>
+          <ul class="incremental">
+            <li>Limit myself to procedures that are laborious neither to execute nor to understand, and limit myself to standard English.</li>
+            <li>Must be usable on the fly, without preparation. No codes, ciphers, steganography, or heavy use of filler words (<em>e.g.</em>, &ldquo;wink wink&rdquo;, &ldquo;nudge nudge&rdquo;).</li>
+            <li>Also no resorting foreign language or non-standard accents (in spite of their considerable utility).</li>
+            <li>Reported values are the average of five trials per type of interference.</li>
+          </ul>
+        </div>
       </div>
 
       <div class="slide">
         <h1>Summary of results</h1>
-        <table>
-          <tr class="headcell"><th>type of interference</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-          <tr><td class="leftcol">Natural voice (no interference) </td><td>0.8</td><td>high</td><td>high</td></tr>
-          <tr><td class="headcell">acoustic interference</td></tr>
-          <tr><td class="leftcol">Vigorous tapping </td><td>0.4</td><td>high</td><td>medium</td></tr>
-          <tr><td class="leftcol">Flapping paper </td><td>0.5</td><td>high</td><td>high</td></tr>
-          <tr><td class="leftcol">News report (<a href="http://betaplayer.radio.com/player/1010-wins">1010 WINS</a>) </td><td>0.5</td><td>high</td><td>high</td></tr>
-          <tr><td class="leftcol">Music (John Coltrane, <a href="http://www.youtube.com/watch?v=S1GrP6thz-k">Blue Trane</a>, 1957) </td><td>0.6</td><td>high</td><td>high</td></tr>
-          <tr><td class="leftcol">White Noise (from <a href="http://SimplyNoise.com">SimplyNoise</a>) </td><td>0.8</td><td>high</td><td>high</td></tr>
-          <tr><td class="headcell">funny voices</td></tr>
-          <tr><td class="leftcol">Whispering </td><td>0.5</td><td>high</td><td>medium</td></tr>
-          <tr><td class="leftcol">Heavy Breathing </td><td>0.6</td><td>low</td><td>low</td></tr>
-          <tr><td class="leftcol">Falsetto </td><td>0.4</td><td>low</td><td>low</td></tr>
-          <tr><td class="headcell">composite</td></tr>
-          <tr><td class="leftcol">Whispering while waving paper </td><td>0.1</td><td>medium</td><td>low</td></tr>
-        </table>
+        <div>
+          <table>
+            <tr class="headcell"><th>type of interference</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr><td class="leftcol">Natural voice (no interference) </td><td>0.8</td><td>high</td><td>high</td></tr>
+            <tr><td class="headcell">acoustic interference</td></tr>
+            <tr><td class="leftcol">Vigorous tapping </td><td>0.4</td><td>high</td><td>medium</td></tr>
+            <tr><td class="leftcol">Flapping paper </td><td>0.5</td><td>high</td><td>high</td></tr>
+            <tr><td class="leftcol">News report (<a href="http://betaplayer.radio.com/player/1010-wins">1010 WINS</a>) </td><td>0.5</td><td>high</td><td>high</td></tr>
+            <tr><td class="leftcol">Music (John Coltrane, <a href="http://www.youtube.com/watch?v=S1GrP6thz-k">Blue Trane</a>, 1957) </td><td>0.6</td><td>high</td><td>high</td></tr>
+            <tr><td class="leftcol">White Noise (from <a href="http://SimplyNoise.com">SimplyNoise</a>) </td><td>0.8</td><td>high</td><td>high</td></tr>
+            <tr><td class="headcell">funny voices</td></tr>
+            <tr><td class="leftcol">Whispering </td><td>0.5</td><td>high</td><td>medium</td></tr>
+            <tr><td class="leftcol">Heavy Breathing </td><td>0.6</td><td>low</td><td>low</td></tr>
+            <tr><td class="leftcol">Falsetto </td><td>0.4</td><td>low</td><td>low</td></tr>
+            <tr><td class="headcell">composite</td></tr>
+            <tr><td class="leftcol">Whispering while waving paper </td><td>0.1</td><td>medium</td><td>low</td></tr>
+          </table>
+        </div>
       </div>
-      
+
+      <div class="slide">
+      <h1>Measuring transcription accuracy</h1>
+        <div>
+          <p>Google supplies a transcription composed of well-formed English words, so there is no question of typographical errors, for which edit distance would be a useful quantification tool.</p>
+          <p>Instead, given an original string <code>s1</code> and a transcription string <code>s2</code>, I look for the longest common substring of <code>s1</code> in <code>s2</code> together with whatever other matching material is found on either side of it interspersed with non-matching material.</p>
+          <p>The Ratcliff/Obserhelp algorithm was developed to accomplish this task by John W. Ratcliff and John A. Obershelp in 1983 for application to problems in educational software (Ratcliff and Metzener, 1988). Ratcliff called it "Wild-card search that doesn't require wild cards; &hellip; the algorithm creates its own wildcards." It is not the most efficient LCS algorithm, though.</p>
+          <p>The algorithm is implemented in Python using a queue rather than recursion.</p>
+        </div>
+      </div>
+
+      <div class="slide">
+      <h1>References</h1>
+        <div>
+          <p><strong>The Ratcliff/Obserhelp algorithm</strong></p>
+          <ol>
+            <li>The <a href="http://www.drdobbs.com/database/pattern-matching-the-gestalt-approach/database/pattern-matching-the-gestalt-approach/184407970?pgno=5">Ratcliff/Obershelp algorithm</a> (accessed 20140130).</li>
+            <li>See also <a href="http://www.drdobbs.com/letters/184408035">mention (without code)</a> of two C implementations (accessed 20140130).</li>
+          </ol>
+          <p><strong>Python difflib</strong></p>
+          <ol>
+            <li><a href="http://docs.python.org/3.3/library/difflib.html">Docs</a> for Python <code>difflib</code>.</li>
+            <li><a href="http://hg.python.org/cpython/file/default/Lib/difflib.py">Source-code</a> for Python <code>difflib</code>.</li>
+          </ol>
+        </div>
+      </div>
+
       <div class="slide">
       <h1>Data (1: Newswire)</h1>
-      Original text (composite of recent news material):<br><br>
-      <blockquote>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. &hellip; Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.<br><br>
-      <blockquote>(Nicole Hong and Prabha Natarajan, &ldquo;Emerging Markets Selloff Spreads&rdquo;; on line at <a href="http://online.wsj.com/news/articles/SB10001424052702303743604579350591853870458">the <em>Wall Street Journal</em>, dated 20140129</a> and accessed 20140129.)</blockquote></blockquote>
+        <div>
+          <p>Original text (composite of recent news material):<br><br>
+          <blockquote>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. &hellip; Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.<br><br>
+            <blockquote>(Nicole Hong and Prabha Natarajan, &ldquo;Emerging Markets Selloff Spreads&rdquo;; on line at <a href="http://online.wsj.com/news/articles/SB10001424052702303743604579350591853870458">the <em>Wall Street Journal</em>, dated 20140129</a> and accessed 20140129.)</blockquote></blockquote></p>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, sample: no interference)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_01_natural.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.8</td><td>high</td><td>high</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>The Decline 4 Fuel by concerns that efforts by emerging markets central banks to tighten monetary policy won't be enough to protect their economies against an exit of invest your money. Although higher. Rates are supposed to entice investors to continue investing in emerging markets times. These, analysts at the total. The higher interest rates may take on the economic growth of those nations. Maybe too high.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_01_natural.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.8</td><td>high</td><td>high</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>The Decline 4 Fuel by concerns that efforts by emerging markets central banks to tighten monetary policy won't be enough to protect their economies against an exit of invest your money. Although higher. Rates are supposed to entice investors to continue investing in emerging markets times. These, analysts at the total. The higher interest rates may take on the economic growth of those nations. Maybe too high.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, Vigorous tapping)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_02_vigorous_tapping.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.4</td><td>high</td><td>medium</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>The client was little 12th past 5 or 10 North Central Park Type of monetary policy won't be enough to protect their economies again for the okay bye bye, also higher. Rates are doing. Tyson. Vestess to invest in Virginia. Geez, panelist said the total pilots great vacate the economic growth presentations, maybe 2. Bye.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_02_vigorous_tapping.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.4</td><td>high</td><td>medium</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>The client was little 12th past 5 or 10 North Central Park Type of monetary policy won't be enough to protect their economies again for the okay bye bye, also higher. Rates are doing. Tyson. Vestess to invest in Virginia. Geez, panelist said the total pilots great vacate the economic growth presentations, maybe 2. Bye.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, Flapping paper)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_03_flapping_paper.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.5</td><td>high</td><td>high</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>I just fine for few. My concern is that after 5:30 or 6. Thanks to tighten monetary policy 4' enough to protect their economies again, if you've got investor money for a little higher rates, as opposed to intense investors to continue investing emerging market currency, analysts said fits hold a higher interest rates may takes on the on the growth of those nations. Maybe 25.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_03_flapping_paper.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.5</td><td>high</td><td>high</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>I just fine for few. My concern is that after 5:30 or 6. Thanks to tighten monetary policy 4' enough to protect their economies again, if you've got investor money for a little higher rates, as opposed to intense investors to continue investing emerging market currency, analysts said fits hold a higher interest rates may takes on the on the growth of those nations. Maybe 25.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, News report)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_04_news_report.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.5</td><td>high</td><td>high</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Who claims. We're sure. My concern is that efforts by emerging markets info. Thanks, tycoon monetary policy just be enough to protect their economies again for the exact of investor money, although higher rates, as opposed to entice investors to continue investing in emerging markets. Alright. Thanks and I was at the toll of a higher interest rates may take on the economic growth reservations baby 2. Hugs. Bye.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_04_news_report.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.5</td><td>high</td><td>high</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Who claims. We're sure. My concern is that efforts by emerging markets info. Thanks, tycoon monetary policy just be enough to protect their economies again for the exact of investor money, although higher rates, as opposed to entice investors to continue investing in emerging markets. Alright. Thanks and I was at the toll of a higher interest rates may take on the economic growth reservations baby 2. Hugs. Bye.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, Music)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_05_music.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.6</td><td>high</td><td>high</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>I'm calling to see what concerns. The efforts by emerging market central banks to tighten monetary policy won't be enough to protect their economies. Again today cos investor money for a little higher ready so supposed to entice investors continue investing in emerging market currency, analysts say that the total HI. Sprayed may take part of the economic growth of suspicion. Maybe 25.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_05_music.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.6</td><td>high</td><td>high</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>I'm calling to see what concerns. The efforts by emerging market central banks to tighten monetary policy won't be enough to protect their economies. Again today cos investor money for a little higher ready so supposed to entice investors continue investing in emerging market currency, analysts say that the total HI. Sprayed may take part of the economic growth of suspicion. Maybe 25.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, White Noise)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_06_white_noise.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.8</td><td>high</td><td>high</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Yes, calling to ask you by concerns. That efforts by emerging markets central bye to tighten monetary policy won't be enough to protect their economies. Again the exit, of investor money, Hello Hi. Rates are supposed to entice investors to continue investing in emerging market currency, analysts said, the toll of a higher interest rates may take on the economic growth of those nations they'd be too high.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_06_white_noise.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.8</td><td>high</td><td>high</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Yes, calling to ask you by concerns. That efforts by emerging markets central bye to tighten monetary policy won't be enough to protect their economies. Again the exit, of investor money, Hello Hi. Rates are supposed to entice investors to continue investing in emerging market currency, analysts said, the toll of a higher interest rates may take on the economic growth of those nations they'd be too high.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, Whispering)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_07_whispering.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.5</td><td>high</td><td>medium</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Time for your bike is that efforts by Mark at central banks to tighten monetary policy won't be enough to protect our economy. I can't accept a investor putting ohh Hi, Alright. I suppose to entice investors to continue investing in emerging market starts. I don't know what said, Put all the under Interest rates paid A on the economic growth info stations, maybe July.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_07_whispering.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.5</td><td>high</td><td>medium</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Time for your bike is that efforts by Mark at central banks to tighten monetary policy won't be enough to protect our economy. I can't accept a investor putting ohh Hi, Alright. I suppose to entice investors to continue investing in emerging market starts. I don't know what said, Put all the under Interest rates paid A on the economic growth info stations, maybe July.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, Heavy Breathing)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_08_heavy_breathing.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.6</td><td>low</td><td>low</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Hey clients were fuels by concerns that efforts by emerging markets central banks to tighten monetary policy won't be enough to protect their economies again stagnate of investor money. Also, I always are supposed to entice investors to continue investing in emerging markets parents East, and I was set Apple are interest rates me take on the economic growth associations, maybe 2. Bye.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_08_heavy_breathing.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.6</td><td>low</td><td>low</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Hey clients were fuels by concerns that efforts by emerging markets central banks to tighten monetary policy won't be enough to protect their economies again stagnate of investor money. Also, I always are supposed to entice investors to continue investing in emerging markets parents East, and I was set Apple are interest rates me take on the economic growth associations, maybe 2. Bye.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, Falsetto)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_09_falsetto.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.4</td><td>low</td><td>low</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>The client was little concerned, the difference, but I'm going to work at central banks to talk to monica closing cost to protect our economy. As you can still exist of investor money. But I don't know what I'm supposed to rain forest investors to continue investing in emerging markets time please. Hey fast calling her cruise from. It's maintained by economic growth of those nations maybe tomorrow how high.</td></tr>
-      </table>
+        <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_09_falsetto.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.4</td><td>low</td><td>low</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>The client was little concerned, the difference, but I'm going to work at central banks to talk to monica closing cost to protect our economy. As you can still exist of investor money. But I don't know what I'm supposed to rain forest investors to continue investing in emerging markets time please. Hey fast calling her cruise from. It's maintained by economic growth of those nations maybe tomorrow how high.</td></tr>
+          </table>
+        </div>
       </div>
-      
+
       <div class="slide">
       <h1>Data (1: Newswire, Whispering & Flapping)</h1>
-      <table>
-        <tr><th>sample</th><th>average<br>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
-        <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_10_whispering_and_waving_paper.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.1</td><td>medium</td><td>low</td></tr>
-      </table>
-      <br>
-      <table class="transcriptiontext">
-        <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Hello HI. Your talk to you sir okay bye bye, bye bye hey. I think that bye bye, alright bye bye, bye. Hello, thanks bye bye economic growth.</td></tr>
-      </table>
+      <div>
+          <table>
+            <tr><th>sample</th><th>accuracy</th><th>ease to<br>produce</th><th>ease to<br>understand</th></tr>
+            <tr class="datarow"><td><audio controls><source src="MP3s/gauge_voice_transcription_10_whispering_and_waving_paper.mp3" type="audio/mpeg">Audio unsupported.</audio></td><td>0.1</td><td>medium</td><td>low</td></tr>
+          </table>
+          <br>
+          <table class="transcriptiontext">
+            <tr><th>Original text</th><th>Transcription</th></tr>
+            <tr><td>The declines were fueled by concerns that efforts by emerging-market central banks to tighten monetary policy won't be enough to protect their economies against an exit of investor money. Although higher rates are supposed to entice investors to continue investing in emerging-market currencies, analysts said the toll the higher interest rates may take on the economic growth of those nations may be too high.</td><td>Hello HI. Your talk to you sir okay bye bye, bye bye hey. I think that bye bye, alright bye bye, bye. Hello, thanks bye bye economic growth.</td></tr>
+          </table>
+        </div>
       </div>
-      
-      
+
     </div>
 
   </body>
