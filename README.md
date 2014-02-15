@@ -4,6 +4,10 @@
 
 ---
 
+[Slides](http://htmlpreview.github.io/?https://github.com/brannerchinese/Gauge_Voice_Transcription/blob/master/SLIDES/branner_interfering_with_STT_slides_20140214.html) of Hack and Tell presentation. (These slides may not display correctly on GitHub.com; if not, clone this repository to a regular file system and open the `html` file from there.
+
+---
+
 **Note** that this software is designed for use only with Python 2, at or above version 2.6. Running in other environments will fail by design, since the NLTK dependency requires Python 2.
 
 ### To run
