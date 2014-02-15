@@ -116,7 +116,11 @@ def clean_and_normalize(the_str):
             r"'d": ' would',
             r"'ve": ' have',
             r"'re": ' are',
-            r"'ve": ' have'}
+            r"'ve": ' have',
+            r"wanna": 'want to',
+            r"anymore": 'any more',
+            r"gonna": 'going to',
+            }
     for s in substitutions:
         the_str = re.sub(s, substitutions[s], the_str)
     # Remove all other punctuation and normalize.
