@@ -55,14 +55,4 @@ The algorithm used was described as ["the gestalt approach"](http://www.drdobbs.
 
 The original algorithm is designed for comparing two strings of characters. Here, I am interested in comparison not of strings but of arrays, and want to measure not single-character differences but the matching of whole, well-formed words in standard English (the usual output of voice-transcription software). But `difflib.SequenceMatcher` is able to operate on arrays of indivisible elements.
 
----
-
-This project is in mid-process.
-
-Still to do: 
-
- 1. Convert phone calls to MP3.
- 2. Decide about inclusion of tolerance information.
- 1. Prepare slides for presentation.
-
 [end]
