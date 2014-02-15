@@ -1,10 +1,12 @@
-## Gauge_Voice_Transcription
+## Gauge Voice Transcription
 
 **Calculate various quantitative gauges of the accuracy of voice transcription.**
 
 ---
 
-[Slides](http://htmlpreview.github.io/?https://github.com/brannerchinese/Gauge_Voice_Transcription/blob/master/SLIDES/branner_interfering_with_STT_slides_20140214.html) of Hack and Tell presentation. (These slides may not display correctly on GitHub.com; if not, clone this repository to a regular file system and open the `html` file from there.
+### [Slides](http://htmlpreview.github.io/?https://github.com/brannerchinese/Gauge_Voice_Transcription/blob/master/SLIDES/branner_interfering_with_STT_slides_20140214.html) of Hack and Tell presentation
+
+These slides may not display correctly on GitHub.com; if not, clone this repository to a regular file system and open the `html` file from there.
 
 ---
 
