@@ -1,5 +1,5 @@
 # gauge_voice_transcription_py2.py
-# 20140214, working.
+# 20140215, working.
 # David Prager Branner
 
 """Return quantitative gauges of the accuracy of voice transcription."""
