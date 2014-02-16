@@ -55,4 +55,10 @@ The algorithm used was described as ["the gestalt approach"](http://www.drdobbs.
 
 The original algorithm is designed for comparing two strings of characters. Here, I am interested in comparison not of strings but of arrays, and want to measure not single-character differences but the matching of whole, well-formed words in standard English (the usual output of voice-transcription software). But `difflib.SequenceMatcher` is able to operate on arrays of indivisible elements.
 
+---
+
+### Still to be done
+
+ * Times of day (08:30, e.g.) occasionally appear in Google Voice transcriptions and need to be handled. This will require adding the numbers 11 to 59 to `digit2word`.
+
 [end]
