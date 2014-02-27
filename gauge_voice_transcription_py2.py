@@ -1,5 +1,5 @@
 # gauge_voice_transcription_py2.py
-# 20140215, working.
+# 20140227
 # David Prager Branner
 
 """Return quantitative gauges of the accuracy of voice transcription."""
@@ -24,6 +24,13 @@ def main(orig, transcr, places=1):
             round(gauge_raw, places), 
             round(gauge_word, places), 
             round(gauge_lemma, places)))
+
+def gauge_list(orig, transcr, places=1):
+    results = []
+    for item in transcr:
+        results.append(percent_matching(orig, item)[2])
+    print([round(i, places) for i in results])
+    print('average:', round(sum(results) / len(results), places))
 
 # Global variables.
 # Treebank and WordNet POS need correspondences specified in order for the
