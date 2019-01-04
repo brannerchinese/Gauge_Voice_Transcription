@@ -43,7 +43,8 @@ TB2WN = {
     'V': nltk.wordnet.wordnet.VERB,
     'S': nltk.wordnet.wordnet.ADJ_SAT
     }
-WNL = nltk.stem.WordNetLemmatizer()
+WNL = nltk.stem.WordNetLemmatizer
+()
 # Replace numerals with equivalent words.
 # Attested: 3rd; 25 for 'too high', must mean 'two five'.
 # Unknown whether we will actually encounter 11, 12th, 0th.
